@@ -8,7 +8,7 @@ import (
 
 var ChatApi = "https://chat.joelsiervas.online"
 
-func getMessages(){
+func getMessages(w http.ResponseWriter, r *http.Request) {
 	resp, _ := http.Get(ChatApi + "/messages")
 	defer resp.Body.Close()
 
@@ -16,7 +16,7 @@ func getMessages(){
 	io.Copy(w, resp.Body)
 }
 
-func postMessages(){
+func postMessages(w http.ResponseWriter, r *http.Request) {
 	resp, _ := http.Post(ChatApi+"/messages", "application/json", r.Body)
 	defer resp.Body.Close()
 
