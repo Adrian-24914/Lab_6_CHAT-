@@ -9,7 +9,11 @@ import (
 var ChatApi = "https://chat.joelsiervas.online"
 
 func getMessages(){
-	//xd
+	resp, _ := http.Get(ChatApi + "/messages")
+	defer resp.Body.Close()
+
+	w.Header().Set("Content-Type", "application/json")
+	io.Copy(w, resp.Body)
 }
 
 func postMessages(){
