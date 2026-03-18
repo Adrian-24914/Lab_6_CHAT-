@@ -27,3 +27,32 @@ const postMessage = async (message) => {
 
     getMessages();
 };
+
+getMessages();
+setInterval(getMessages, 5000);
+
+const sendButton = document.getElementById("send-button");
+const userInput = document.getElementById("user-input");
+
+if (sendButton && userInput) {
+
+    sendButton.addEventListener("click", () => {
+        const text = userInput.value.trim();
+
+        if (text !== "") {
+            postMessage({
+                user: "Adrian",
+                text: text
+            });
+
+            userInput.value = "";
+        }
+    });
+
+        userInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendButton.click();
+        }
+    });
+}
