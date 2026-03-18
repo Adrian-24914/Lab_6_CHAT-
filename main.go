@@ -17,7 +17,11 @@ func getMessages(){
 }
 
 func postMessages(){
-	//enviar
+	resp, _ := http.Post(ChatApi+"/messages", "application/json", r.Body)
+	defer resp.Body.Close()
+
+	w.Header().Set("Content-Type", "application/json")
+	io.Copy(w, resp.Body)
 }
 
 func main() {
