@@ -18,3 +18,12 @@ const getMessages = async () => {
 
 };
 
+const postMessage = async (message) => {
+    await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(message),
+    });
+
+    getMessages();
+};
