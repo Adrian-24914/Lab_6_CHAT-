@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+var ChatApi = "https://chat.joelsiervas.online"
+
 func getMessages(){
 	//xd
 }
