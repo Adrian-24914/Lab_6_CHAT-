@@ -1,6 +1,9 @@
 const getMessages = async () => {
     const chatBox = document.getElementById("chat-box");
 
+    const wasAtBottom =
+        chatBox.scrollHeight - chatBox.scrollTop <= chatBox.clientHeight + 5;
+
     const response = await fetch("/api/messages");
     const messages = await response.json();
 
@@ -15,7 +18,9 @@ const getMessages = async () => {
         chatBox.appendChild(li);
     }
 
-
+    if (wasAtBottom) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
 };
 
 const postMessage = async (message) => {
