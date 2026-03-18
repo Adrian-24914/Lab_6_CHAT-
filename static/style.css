@@ -1,17 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap');
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background: #0d0f0e;
+    color: #d4e8d4;
 }
 
 h1 {
     text-align: center;
-    background: #4a6cf7;
-    color: white;
+    background: #131614;
+    color: #39ff85;
     margin: 0;
     padding: 15px;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid #1f2420;
 }
 
 #chat-box {
@@ -20,30 +27,62 @@ h1 {
     margin: 0;
     padding: 15px;
     overflow-y: auto;
-    background: #f4f4f4;
+    background: #0d0f0e;
 }
 
 #chat-box li {
-    background: white;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+    padding: 4px 0;
+    margin-bottom: 2px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0;
+    background: transparent;
+}
+
+#chat-box li strong {
+    color: #39ff85;
+}
+
+#chat-box li img {
+    display: block;
+    max-width: 300px;
+    max-height: 220px;
+    margin-top: 6px;
+    border-radius: 4px;
+    border: 1px solid #1f2420;
 }
 
 .input-area {
     display: flex;
     padding: 10px;
-    background: #eee;
+    background: #131614;
+    border-top: 1px solid #1f2420;
 }
 
 #user-input {
     flex: 1;
     resize: none;
     padding: 8px;
+    background: #0d0f0e;
+    border: 1px solid #1f2420;
+    color: #d4e8d4;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    outline: none;
 }
 
 #send-button {
     margin-left: 10px;
     padding: 8px 15px;
     cursor: pointer;
+    background: transparent;
+    border: 1px solid #39ff85;
+    color: #39ff85;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+}
+
+#send-button:hover {
+    background: #1a7a3e;
 }
