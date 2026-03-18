@@ -1,3 +1,9 @@
+const IMAGE_EXTENSIONS = /\.(jpg|jpeg|png|gif|webp|svg|bmp)(\?.*)?$/i;
+
+const extractUrls = (text) => text.match(/https?:\/\/[^\s]+/g) || [];
+
+const isImageUrl = (url) => IMAGE_EXTENSIONS.test(url.split('?')[0]);
+
 const getMessages = async () => {
     const chatBox = document.getElementById("chat-box");
 
@@ -14,6 +20,19 @@ const getMessages = async () => {
 
         const li = document.createElement("li");
         li.innerHTML = `<strong>${message.author || message.user}:</strong> ${message.text}`;
+
+
+        const urls = extractUrls(message.text || "");
+        for (const url of urls) {
+            if (isImageUrl(url)) {
+                const img = document.createElement("img");
+                img.src = url;
+                img.alt = "image";
+                img.style.cssText = "display:block; max-width:100%; max-height:250px; margin-top:6px; border-radius:6px;";
+                img.onerror = () => img.remove();
+                li.appendChild(img);
+            }
+        }
 
         chatBox.appendChild(li);
     }
@@ -54,7 +73,7 @@ if (sendButton && userInput) {
         }
     });
 
-        userInput.addEventListener("keydown", (e) => {
+    userInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendButton.click();
